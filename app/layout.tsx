@@ -6,10 +6,10 @@ const inter = Inter({subsets:["latin"]});
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Karrot Market",
-    default: "Karrot Market",
+    template: "%s | Authentication 16",
+    default: "Authentication 16",
   },
-  description: "Sell and buy all the things!",
+  description: "next js study",
 };
 
 export default function RootLayout({

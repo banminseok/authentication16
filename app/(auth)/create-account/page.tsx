@@ -11,11 +11,11 @@ import SelectBox from "@/components/select";
 
 
 const initialState: ActionState = { 
-  result: false,
   password:[],
   confirm_password:[],
   email:[],
   userName:[],
+  gender:[],
 };
 
 export default function CreateAccount() {
@@ -55,7 +55,7 @@ export default function CreateAccount() {
           icon={<KeyIcon className="size-4"/>}
           errors={state?.password}
           />
-        <Input name="password"
+        <Input name="confirm_password"
           type="password"
           placeholder="Confirm Password"
           required
@@ -65,6 +65,7 @@ export default function CreateAccount() {
           />   
   
         <SelectBox name="gender"
+          defaultValue=""
           selectText="성별을 선택해 주세요."
           options={options}
           required

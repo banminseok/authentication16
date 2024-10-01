@@ -2,6 +2,7 @@ import { SelectHTMLAttributes } from "react";
 
 interface selectProps {
   name: string;
+  defaultValue : string;
   selectText: string;
   options: { val: string; text: string }[];
   errors?: string[];
@@ -9,6 +10,7 @@ interface selectProps {
 
 export default function SelectBox({
   name,
+  defaultValue,
   selectText,
   options,
   errors,
@@ -24,9 +26,10 @@ export default function SelectBox({
         text-white text-sm rounded-lg 
         `}
         name={name}
+        defaultValue={defaultValue}
         {...rest}
       >
-          <option selected>{selectText}</option>
+          <option value="" disabled>{selectText}</option>
           {options?.map((opt, index) => (
             <option key={index} value={opt.val}>{opt.text}</option>
           ))}
