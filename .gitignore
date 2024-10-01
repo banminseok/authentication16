@@ -34,3 +34,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+*.asp
+
+
+.next
+.env
+*.db
+*.db-journal
