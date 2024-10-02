@@ -1,6 +1,6 @@
 "use server";
 
-import { EMAIL_REGEX, PASSWORD_MIN_LENGTH, PASSWORD_REGEX, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@/lib/constants";
+import { PASSWORD_MIN_LENGTH, PASSWORD_REGEX, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@/lib/constants";
 import {z} from "zod";
 import bcrypt from "bcrypt";
 import db from "@/lib/db";

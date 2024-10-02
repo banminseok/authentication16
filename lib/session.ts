@@ -9,7 +9,10 @@ interface SessionContent{
 export default function getSession() {
   return getIronSession<SessionContent> (cookies(),{
     cookieName:"authentication-16",
-    password : process.env.COOKIE_PASSWORD!
+    password : process.env.COOKIE_PASSWORD!,
+    cookieOptions: {
+      maxAge: 60 * 60 * 1 , // 1주일
+    },
   });
 }
 
