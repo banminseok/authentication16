@@ -1,4 +1,6 @@
 import { formatToTimeAgo } from "@/lib/util";
+import { HeartIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 interface ListTweetProps {
@@ -7,7 +9,8 @@ interface ListTweetProps {
   created_at: Date;
   user :{
     id: number;
-    username : string;
+    username : string;  
+    email? : string;  
   }
   _count: {Like:number}
 }
@@ -17,26 +20,29 @@ export default function ListTweet({
   id,
   tweet,
   created_at,
-  user:{id : userId, username},
+  user:{id : userId, username, email},
   _count:{Like: likeCount}
 }:ListTweetProps){
 
   return(
-    <Link href={`/tweets/${id}`} className="flex flex-col gap-5">
-        <div className="flex  gap-1 *:text-white *:text-lg">
-          <span className="">{username}</span>
-          <span className=" text-neutral-500">
+    <Link href={`/tweets/${id}`} className="flex flex-col gap-5 ">
+        <div className="flex items-center gap-1  *:text-md">
+          <UserCircleIcon className="size-8 mb-1"/>
+          <span className="font-bold text-lg">{username}</span>
+          <span className="text-neutral-500 ml-2">{`@${email}`}</span>
+          <span className=" text-neutral-500 ml-5">
           {formatToTimeAgo(created_at.toString())}
           </span>
         </div>
-        <div className="">
+        <div className="text-lg">
           {tweet}
         </div>
-        <div className="flex gap-1 *:text-white  *:text-lg">
-          <span className="text-lg">{likeCount}</span>
-          <span className="text-lg text-neutral-500">
-            {userId}
-          </span>
+        <div className="flex items-center gap-1 *:text-md *:text-neutral-500 border-b-2 border-neutral-500 pb-5">
+          
+          <HeartIcon className="size-5" />
+          <span className="">{likeCount}</span>
+          <input type="hidden" name="userId" value={userId}/>
+
         </div>
     </Link>
   )

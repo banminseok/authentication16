@@ -1,7 +1,5 @@
 import ListTweet from "@/components/list-tweet";
 import db from "@/lib/db";
-import Link from "next/link"
-
 
 async function getTweets() {
   await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -14,6 +12,7 @@ async function getTweets() {
         select: {
           id: true,
           username: true,
+          email: true,
         }
       },
       _count:{
@@ -30,7 +29,7 @@ export default async function Home() {
     <>
     <div className="p-5 flex flex-col gap-5">
       {tweets.map((tweet) => (
-        <ListTweet key={tweet.id} {...tweet} />
+        <ListTweet key={tweet.id} {...tweet} user={{...tweet.user, email: tweet.user.email || undefined}} />
       ))}
     </div>
     </>
