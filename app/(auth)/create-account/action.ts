@@ -41,6 +41,26 @@ async function checkUsernameUniqueness(username: string, ctx: z.RefinementCtx) {
   }
 }
 
+async function checkEmailUniqueness(email: string, ctx: z.RefinementCtx) {
+  const user = await db.user.findUnique({
+    where: {
+      email,
+    },
+    select: {
+      id: true,
+    },
+  });
+  if (user) {
+    ctx.addIssue({
+      code: "custom",
+      message: "이 Email은 이미 사용 중입니다",
+      path: ["email"],
+      fatal: true,
+    });
+    return z.NEVER;
+  }
+}
+
 const formSchema = z.object({
   username: z.string({
     required_error: "Username을 입력해 주세요."
@@ -68,6 +88,9 @@ const formSchema = z.object({
 })
 .superRefine(async ({username}, ctx) => {
   await checkUsernameUniqueness(username, ctx);
+})
+.superRefine(async ({email}, ctx) => {
+  await checkEmailUniqueness(email, ctx);
 })
 .refine(checkPasswords, {
   message: "Both passwords should be the same!",
