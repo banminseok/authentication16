@@ -1,7 +1,9 @@
-import ListTweet from "@/components/list-tweet";
+import TweetList from "@/components/tweet-list";
+import { TWEET_ITEMS_PERPAGE } from "@/lib/constants";
 import db from "@/lib/db";
+import { Prisma } from "@prisma/client";
 
-async function getTweets() {
+async function getInitialTweets() {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const tweets = await db.tweet.findMany({
     select: {
@@ -19,18 +21,27 @@ async function getTweets() {
         select : {Like: true}
       }
     },
+    take: TWEET_ITEMS_PERPAGE,
+    orderBy: {
+      created_at: "desc",
+    },
   });
   return tweets;
 }
 
+export type InitialTweets = Prisma.PromiseReturnType<
+  typeof getInitialTweets
+>;
+
 export default async function Home() {
-  const tweets = await getTweets();
+  const initialTweets = await getInitialTweets();
+  const itemsPerPage = TWEET_ITEMS_PERPAGE; // 페이지당 표시할 항목 수
+  const totalRecords = await db.tweet.count();
+  
   return (
     <>
     <div className="p-5 flex flex-col gap-5">
-      {tweets.map((tweet) => (
-        <ListTweet key={tweet.id} {...tweet} user={{...tweet.user, email: tweet.user.email || undefined}} />
-      ))}
+      <TweetList initialTweets={initialTweets} itemsPerPage={itemsPerPage} totalRecords={totalRecords} />
     </div>
     </>
   );

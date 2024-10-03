@@ -134,5 +134,5 @@ export async function createAccount(preState:ActionState, formData:FormData):Pro
   const session = await getSession();
   session.id = user.id;
   await updateSession(user.id);
-  redirect("/profile")
+  redirect("/")
 }

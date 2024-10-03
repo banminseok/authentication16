@@ -12,7 +12,8 @@ interface ListTweetProps {
     username : string;  
     email? : string;  
   }
-  _count: {Like:number}
+  _count: {Like:number};
+  currentPage:number;
 }
 
 
@@ -21,11 +22,12 @@ export default function ListTweet({
   tweet,
   created_at,
   user:{id : userId, username, email},
-  _count:{Like: likeCount}
+  _count:{Like: likeCount},
+  currentPage
 }:ListTweetProps){
 
   return(
-    <Link href={`/tweets/${id}`} className="flex flex-col gap-5 ">
+    <Link href={`/tweets/${id}?backUrl=${currentPage}`} className="w-full flex flex-col gap-5 ">
         <div className="flex items-center gap-1  *:text-md">
           <UserCircleIcon className="size-8 mb-1"/>
           <span className="font-bold text-lg">{username}</span>

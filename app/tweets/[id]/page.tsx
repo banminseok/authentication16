@@ -31,8 +31,7 @@ export default async function TweetDetail({
 }: {
   params: { id: string };
 }) {
-
-  console.log(params);
+ 
   const id = Number(params.id);
   if (isNaN(id)) {
     return notFound();
@@ -45,7 +44,7 @@ export default async function TweetDetail({
   return(
     <>
       <div className="w-full mx-auto max-w-screen-md px-5 py-3 *:text-white mb-5">
-          <Link href="/" className="flex items-center gap-px">
+          <Link href={`/`} className="flex items-center gap-px">
             <ArrowUturnLeftIcon className="size-6 mr-2"/> 돌아가기
           </Link>
       </div>

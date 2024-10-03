@@ -6,4 +6,7 @@
   .primary-btn{
       @apply w-full bg-neutral-200 text-black  font-medium  rounded-3xl text-center hover:bg-neutral-400 transition-colors hover:font-bold;
   }
+  .pagination__item{
+    @apply border-2 border-neutral-500 flex flex-col justify-center items-center w-8
+  }
 }

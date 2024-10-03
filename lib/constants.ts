@@ -8,3 +8,5 @@ export const EMAIL_REGEX = new RegExp(
   /^[a-zA-Z0-9._-]+@zod\.com$/
 );
 
+export const TWEET_ITEMS_PERPAGE = 3;
+export const TWEET_SHOW_PAGE = 5;
