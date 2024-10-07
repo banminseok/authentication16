@@ -6,6 +6,7 @@ import Link from "next/link";
 interface ListTweetProps {
   id: number;
   tweet: string;
+  file : string;
   created_at: Date;
   user :{
     id: number;
@@ -20,6 +21,7 @@ interface ListTweetProps {
 export default function ListTweet({
   id,
   tweet,
+  file,
   created_at,
   user:{id : userId, username, email},
   _count:{Like: likeCount},
@@ -39,6 +41,17 @@ export default function ListTweet({
         <div className="text-lg">
           {tweet}
         </div>
+        {
+        (file) ? (
+            <div
+              className="aspect-square flex items-center justify-center flex-col text-neutral-300 border-neutral-300 rounded-md border-dashed cursor-pointer bg-center bg-cover"
+              style={{
+                backgroundImage: `url(${file})`,
+              }}
+            >
+            </div>
+          ):("")
+        }
         <div className="flex items-center gap-1 *:text-md *:text-neutral-500 border-b-2 border-neutral-500 pb-5">
           
           <HeartIcon className="size-5" />

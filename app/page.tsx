@@ -1,3 +1,4 @@
+import AddTweet from "@/components/add-tweet";
 import TweetList from "@/components/tweet-list";
 import { TWEET_ITEMS_PERPAGE } from "@/lib/constants";
 import db from "@/lib/db";
@@ -8,6 +9,7 @@ async function getInitialTweets() {
   const tweets = await db.tweet.findMany({
     select: {
       tweet: true,
+      file: true,
       created_at: true,
       id: true,
       user: {
@@ -39,8 +41,9 @@ export default async function Home() {
   const totalRecords = await db.tweet.count();
   
   return (
-    <>
+    <>    
     <div className="p-5 flex flex-col gap-5">
+      <AddTweet/>
       <TweetList initialTweets={initialTweets} itemsPerPage={itemsPerPage} totalRecords={totalRecords} />
     </div>
     </>

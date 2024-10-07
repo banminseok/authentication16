@@ -58,7 +58,18 @@ export default async function TweetDetail({
       <div className="text-lg py-5">
         {tweet.tweet}
       </div>
-      <div className="flex items-center py-3 gap-1 *:text-md *:text-neutral-500 border-y-2 border-neutral-500 b-5">
+      {
+        (tweet.file) ? (
+          <div
+            className="aspect-square flex items-center justify-center flex-col text-neutral-300 border-neutral-300 rounded-md border-dashed cursor-pointer bg-center bg-cover"
+            style={{
+              backgroundImage: `url(${tweet.file})`,
+            }}
+          >
+          </div>
+        ):("")
+      }
+      <div className="flex items-center py-3 gap-1 *:text-md *:text-neutral-500 border-y-2 border-neutral-500 b-5 mt-2">
         
         <span className="">{tweet.created_at.toLocaleString("ko-kr")}</span>
         <HeartIcon className="size-5 ml-2" />

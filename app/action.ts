@@ -6,6 +6,7 @@ export async function getMoreTweets(page: number) {
   const products = await db.tweet.findMany({
     select: {
       tweet: true,
+      file: true,
       created_at: true,
       id: true,
       user: {
@@ -35,6 +36,7 @@ export async function getTweetsBypage(page: number|null, itemsPerPage:number) {
   const products = await db.tweet.findMany({
     select: {
       tweet: true,
+      file: true,
       created_at: true,
       id: true,
       user: {
